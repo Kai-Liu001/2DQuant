@@ -19,6 +19,14 @@
 
 ---
 
+---
+
+|                            HR                             |                               LR                               | [SwinIR-light (FP)](https://github.com/JingyunLiang/SwinIR) |          [DBDC+Pac](https://openaccess.thecvf.com/content/CVPR2023/html/Tu_Toward_Accurate_Post-Training_Quantization_for_Image_Super_Resolution_CVPR_2023_paper.html)          |                         2DQuant (ours)                         |
+|:---------------------------------------------------------:|:--------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|:----------------------------------------------------------------:|
+| <img src="figures/comp/img072-gt.png" height=80> | <img src="figures/comp/img072-bicubic.png" height=80> |               <img src="figures/comp/img072-fp.png" height=80>                | <img src="figures/comp/img072-pac.png" height=80> | <img src="figures/comp/img072-ours.png" height=80> |
+| <img src="figures/comp/img092-gt.png" height=80> | <img src="figures/comp/img092-bicubic.png" height=80> |               <img src="figures/comp/img092-fp.png" height=80>                | <img src="figures/comp/img092-pac.png" height=80> | <img src="figures/comp/img092-ours.png" height=80> |
+
+
 ## TODO
 
 * [ ] Release code and pretrained models
