@@ -27,19 +27,76 @@
 | <img src="figures/comp/img092-gt.png" height=80> | <img src="figures/comp/img092-bicubic.png" height=80> |               <img src="figures/comp/img092-fp.png" height=80>                | <img src="figures/comp/img092-pac.png" height=80> | <img src="figures/comp/img092-ours.png" height=80> |
 
 
-## TODO
+## Dependencies
 
-* [ ] Release code and pretrained models
+- Python 3.8
+- PyTorch 1.8.0
+- NVIDIA GPU + [CUDA](https://developer.nvidia.com/cuda-downloads)
+
+```bash
+# Clone the github repo and go to the default directory 'DAT'.
+git clone https://github.com/Kai-Liu001/2DQuant.git
+conda create -n tdquant python=3.8
+conda activate DAT
+pip install -r requirements.txt
+python setup.py develop
+```
+
 
 ## Contents
 
-1. Datasets
-1. Models
-1. Training
-1. Testing
+1. [Datasets](#datasets)
+1. [Models](#models)
+1. [Training](#training)
+1. [Testing](#testing)
 1. [Results](#results)
 1. [Citation](#citation)
 1. [Acknowledgements](#acknowledgements)
+
+## <a name="datasets"></a> Datasets
+
+Used training and testing sets can be downloaded as follows:
+
+| Training Set                                                 |                         Testing Set                          |                        Visual Results                        |
+| :----------------------------------------------------------- | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) (800 training images, 100 validation images) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) (2650 images) [complete training dataset DF2K: [Google Drive](https://drive.google.com/file/d/1TubDkirxl4qAWelfOnpwaSKoj3KLAIG4/view?usp=share_link) / [Baidu Disk](https://pan.baidu.com/s/1KIcPNz3qDsGSM0uDKl4DRw?pwd=74yc)] | Set5 + Set14 + BSD100 + Urban100 + Manga109 [complete testing dataset: [Google Drive](https://drive.google.com/file/d/1yMbItvFKVaCT93yPWmlP3883XtJ-wSee/view?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1Tf8WT14vhlA49TO2lz3Y1Q?pwd=8xen)] | [Google Drive](https://drive.google.com/drive/folders/1ZMaZyCer44ZX6tdcDmjIrc_hSsKoMKg2?usp=drive_link) / [Baidu Disk](https://pan.baidu.com/s/1LO-INqy40F5T_coAJsl5qw?pwd=dqnv#list/path=%2F) |
+
+Download training and testing datasets and put them into the corresponding folders of `datasets/`.
+
+## <a name="models"></a>Models
+
+The pretrained models will be released soon.
+
+## <a name="training"></a> Training
+Training is used to optimize the quantizers' parameters.
+
+- Download [training](https://drive.google.com/file/d/1TubDkirxl4qAWelfOnpwaSKoj3KLAIG4/view?usp=share_link) (DF2K, already processed) and [testing](https://drive.google.com/file/d/1yMbItvFKVaCT93yPWmlP3883XtJ-wSee/view?usp=sharing) (Set5, BSD100, Urban100, Manga109, already processed) datasets, place them in `datasets/`.
+- Download [cali data]() and place them in `keydata/` or run `scripts/2DQuant-getcalidata.sh` to obtain `calidata`.
+
+- Run the following scripts. The training configuration is in `options/train/`. More scripts can be found in `scripts/2DQuant-train.sh`.
+
+  ```shell
+  # 2DQuant 4bit x4
+  python basicsr/train.py -opt options/train/train_2DQuant_x4.yml --force_yml bit=4 name=train_2DQuant_x4_bit4
+  ```
+  
+- The training experiment is in `experiments/`.
+
+
+## <a name="testing"></a> Testing
+
+- Download the pre-trained [models]() (pre-trained models will be released soon.) and place them in `experiments/pretrained_models/`.
+
+- Download [testing](https://drive.google.com/file/d/1yMbItvFKVaCT93yPWmlP3883XtJ-wSee/view?usp=sharing) (Set5, BSD100, Urban100, Manga109) datasets, place them in `datasets/`.
+
+- Run the following scripts. The testing configuration is in `options/test/`.
+
+  ```shell
+  # 2DQuant, reproduces results in Table 3 of the main paper
+  python basicsr/test.py -opt options/test/test_2DQuant_x2.yml --force_yml bit=4 name=test_2DQuant_x2_bit4 path:pretrain_network_Q=experiments/train_2DQuant_x2_bit4/models/net_Q_3200.pth 
+  ```
+  
+- The output is in `results/`.
 
 ## <a name="results"></a> Results
 

@@ -1,0 +1,135 @@
+name: 2DQuant_train_x4
+model_type: TDQuantModel
+scale: 4
+num_gpu: 1
+manual_seed: 3407
+gpu: 0
+bit: 4
+cali_data: keydata/cali_data_100_x4.pth
+quant:
+  hook_per_layer: True
+  hook_per_block: False
+  qkv_separation: True
+
+# dataset and data loader settings
+datasets:
+  train:
+    task: SR
+    name: DF2K
+    type: PairedImageDataset
+    dataroot_gt: dataset/SR/DF2K/HR
+    dataroot_lq: dataset/SR/DF2K/LR_bicubic/X4
+    filename_tmpl: "{}x4"
+    io_backend:
+      type: disk
+
+    gt_size: 256
+    use_hflip: True
+    use_rot: True
+
+    # data loader
+    use_shuffle: True
+    num_worker_per_gpu: 8
+    batch_size_per_gpu: 16
+    dataset_enlarge_ratio: 1
+    prefetch_mode: cpu
+    pin_memory: True
+    num_prefetch_queue: 16
+
+  val_0:
+    task: SR
+    name: Set5
+    type: PairedImageDataset
+    dataroot_gt: dataset/SR/benchmark/Set5/HR
+    dataroot_lq: dataset/SR/benchmark/Set5/LR_bicubic/X4
+    filename_tmpl: "{}x4"
+    io_backend:
+      type: disk
+
+# network structures
+# SwinIR (small)
+network_Q:
+  type: SwinIR
+  upscale: 4
+  img_size: 64
+  window_size: 8
+  img_range: 1.
+  depths: [6, 6, 6, 6]
+  embed_dim: 60
+  num_heads: [6, 6, 6, 6]
+  mlp_ratio: 2
+  upsampler: pixelshuffledirect
+
+# paths
+pathFP:
+  pretrain_network_FP: experiments/pretrained_models/SwinIR/002_lightweightSR_DIV2K_s64w8_SwinIR-S_x4.pth
+  strict_load_FP: true
+
+path:
+  pretrain_network_Q: ~
+  strict_load_Q: ~
+
+# training settings
+train:
+  optim_bound:
+    type: Adam
+    lr: !!float 1e-2
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  optim_bit:
+    type: Adam
+    lr: !!float 1e-3
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  scheduler:
+    type: MultiStepLR
+    milestones: [10000]
+
+
+  total_iter: 4000
+  warmup_iter: -1 # no warm up
+
+  # losses
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1.0
+    reduction: mean
+
+  feature_loss:
+    type: MSELoss
+    loss_weight: 5
+    reduction: mean
+
+
+
+# validation settings
+val:
+  val_freq: !!float 100
+  save_img: False
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 4
+      test_y_channel: True
+    
+    ssim: # metric name, can be arbitrary
+      type: calculate_ssim
+      crop_border: 4
+      test_y_channel: True
+
+# logging settings
+logger:
+  print_freq: 10
+  save_checkpoint_freq: !!float 100
+  use_tb_logger: True
+  wandb:
+    project: ptq
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29500

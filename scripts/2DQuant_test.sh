@@ -1,0 +1,9 @@
+python basicsr/test.py -opt options/test/test_2DQuant_x2.yml --force_yml bit=4 name=test_2DQuant_x2_bit4 path:pretrain_network_Q=experiments/train_2DQuant_x2_bit4/models/net_Q_3200.pth   
+python basicsr/test.py -opt options/test/test_2DQuant_x2.yml --force_yml bit=3 name=test_2DQuant_x2_bit3 path:pretrain_network_Q=experiments/train_2DQuant_x2_bit3/models/net_Q_latest.pth 
+python basicsr/test.py -opt options/test/test_2DQuant_x2.yml --force_yml bit=2 name=test_2DQuant_x2_bit2 path:pretrain_network_Q=experiments/train_2DQuant_x2_bit2/models/net_Q_3300.pth   
+python basicsr/test.py -opt options/test/test_2DQuant_x3.yml --force_yml bit=4 name=test_2DQuant_x3_bit4 path:pretrain_network_Q=experiments/train_2DQuant_x3_bit4/models/net_Q_latest.pth 
+python basicsr/test.py -opt options/test/test_2DQuant_x3.yml --force_yml bit=3 name=test_2DQuant_x3_bit3 path:pretrain_network_Q=experiments/train_2DQuant_x3_bit3/models/net_Q_3600.pth   
+python basicsr/test.py -opt options/test/test_2DQuant_x3.yml --force_yml bit=2 name=test_2DQuant_x3_bit2 path:pretrain_network_Q=experiments/train_2DQuant_x3_bit2/models/net_Q_3500.pth   
+python basicsr/test.py -opt options/test/test_2DQuant_x4.yml --force_yml bit=4 name=test_2DQuant_x4_bit4 path:pretrain_network_Q=experiments/train_2DQuant_x4_bit4/models/net_Q_2300.pth   
+python basicsr/test.py -opt options/test/test_2DQuant_x4.yml --force_yml bit=3 name=test_2DQuant_x4_bit3 path:pretrain_network_Q=experiments/train_2DQuant_x4_bit3/models/net_Q_3800.pth   
+python basicsr/test.py -opt options/test/test_2DQuant_x4.yml --force_yml bit=2 name=test_2DQuant_x4_bit2 path:pretrain_network_Q=experiments/train_2DQuant_x4_bit2/models/net_Q_3800.pth   

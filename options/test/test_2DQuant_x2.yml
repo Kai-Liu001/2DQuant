@@ -1,0 +1,114 @@
+name: test_2DQuant_x2
+model_type: TDQuantModel
+scale: 2
+num_gpu: 1
+manual_seed: 0
+gpu: 0
+cali_data: keydata/cali_data_x2.pth
+bit: 4
+quant:
+  hook_per_layer: True
+  hook_per_block: False
+  qkv_separation: True
+  awe: True
+  
+better: True
+# dataset and data loader settings
+datasets:
+  test_1:
+    task: SR
+    name: Set5
+    type: PairedImageDataset
+    dataroot_gt: dataset/SR/benchmark/Set5/HR
+    dataroot_lq: dataset/SR/benchmark/Set5/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    io_backend:
+      type: disk
+  test_2:
+    task: SR
+    name: Set14
+    type: PairedImageDataset
+    dataroot_gt: dataset/SR/benchmark/Set14/HR
+    dataroot_lq: dataset/SR/benchmark/Set14/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    io_backend:
+      type: disk
+  test_3:
+    task: SR
+    name: B100
+    type: PairedImageDataset
+    dataroot_gt: dataset/SR/benchmark/B100/HR
+    dataroot_lq: dataset/SR/benchmark/B100/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    io_backend:
+      type: disk
+  test_4:
+    task: SR
+    name: Urban100
+    type: PairedImageDataset
+    dataroot_gt: dataset/SR/benchmark/Urban100/HR
+    dataroot_lq: dataset/SR/benchmark/Urban100/LR_bicubic/X2
+    filename_tmpl: '{}x2'
+    io_backend:
+      type: disk
+  test_5:
+    task: SR
+    name: Manga109
+    type: PairedImageDataset
+    dataroot_gt: dataset/SR/benchmark/Manga109/HR
+    dataroot_lq: dataset/SR/benchmark/Manga109/LR_bicubic/X2
+    filename_tmpl: '{}_LRBI_x2'
+    io_backend:
+      type: disk
+
+# network structures
+network_g:
+  type: SwinIR
+  upscale: 2
+  img_size: 64
+  window_size: 8
+  img_range: 1.
+  depths: [6,6,6,6]
+  embed_dim: 60
+  num_heads: [6,6,6,6]
+  mlp_ratio: 2
+  upsampler: pixelshuffledirect
+
+network_Q:
+  type: SwinIR
+  upscale: 2
+  img_size: 64
+  window_size: 8
+  img_range: 1.
+  depths: [6,6,6,6]
+  embed_dim: 60
+  num_heads: [6,6,6,6]
+  mlp_ratio: 2
+  upsampler: pixelshuffledirect
+
+
+# paths
+path:
+  pretrain_network_Q: experiments/pretrained_models/SwinIR/002_lightweightSR_DIV2K_s64w8_SwinIR-S_x2.pth # trained on DIV2K
+  strict_load_Q: true
+
+pathFP:
+  pretrain_network_FP: experiments/pretrained_models/SwinIR/002_lightweightSR_DIV2K_s64w8_SwinIR-S_x2.pth # trained on DIV2K
+  strict_load_FP: true
+
+# validation settings
+val:
+  save_img: false
+  suffix: ~  # add suffix to saved images, if None, use exp name
+  selfensemble_testing: false
+  patchwise_testing: false
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 2
+      test_y_channel: true
+    ssim:
+      type: calculate_ssim
+      crop_border: 2
+      test_y_channel: true

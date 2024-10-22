@@ -1,0 +1,9 @@
+python basicsr/train.py -opt options/train/train_2DQuant_x4.yml --force_yml bit=2 name=train_2DQuant_x4_bit2
+python basicsr/train.py -opt options/train/train_2DQuant_x3.yml --force_yml bit=2 name=train_2DQuant_x3_bit2
+python basicsr/train.py -opt options/train/train_2DQuant_x2.yml --force_yml bit=2 name=train_2DQuant_x2_bit2
+python basicsr/train.py -opt options/train/train_2DQuant_x4.yml --force_yml bit=3 name=train_2DQuant_x4_bit3
+python basicsr/train.py -opt options/train/train_2DQuant_x3.yml --force_yml bit=3 name=train_2DQuant_x3_bit3
+python basicsr/train.py -opt options/train/train_2DQuant_x2.yml --force_yml bit=3 name=train_2DQuant_x2_bit3
+python basicsr/train.py -opt options/train/train_2DQuant_x4.yml --force_yml bit=4 name=train_2DQuant_x4_bit4
+python basicsr/train.py -opt options/train/train_2DQuant_x3.yml --force_yml bit=4 name=train_2DQuant_x3_bit4
+python basicsr/train.py -opt options/train/train_2DQuant_x2.yml --force_yml bit=4 name=train_2DQuant_x2_bit4
