@@ -37,7 +37,7 @@
 # Clone the github repo and go to the default directory 'DAT'.
 git clone https://github.com/Kai-Liu001/2DQuant.git
 conda create -n tdquant python=3.8
-conda activate DAT
+conda activate tdquant
 pip install -r requirements.txt
 python setup.py develop
 ```
