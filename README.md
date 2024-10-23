@@ -1,13 +1,14 @@
 # 2DQuant: Low-bit Post-Training Quantization for Image Super-Resolution
 
-[Kai Liu](https://kai-liu001.github.io/), [Haotong Qin](https://htqin.github.io/), [Yong Guo](https://www.guoyongcs.com/), [Xin Yuan](https://en.westlake.edu.cn/faculty/xin-yuan.html), [Linghe Kong](https://www.cs.sjtu.edu.cn/~linghe.kong/), [Guihai Chen](https://cs.nju.edu.cn/gchen/index.htm), and [Yulun Zhang](http://yulunzhang.com/), "2DQuant: Low-bit Post-Training Quantization for Image Super-Resolution", arXiv, 2024
+[Kai Liu](https://kai-liu001.github.io/), [Haotong Qin](https://htqin.github.io/), [Yong Guo](https://www.guoyongcs.com/), [Xin Yuan](https://en.westlake.edu.cn/faculty/xin-yuan.html), [Linghe Kong](https://www.cs.sjtu.edu.cn/~linghe.kong/), [Guihai Chen](https://cs.nju.edu.cn/gchen/index.htm), and [Yulun Zhang](http://yulunzhang.com/), "2DQuant: Low-bit Post-Training Quantization for Image Super-Resolution", NeurIPS, 2024
 
 [[arXiv](https://arxiv.org/abs/2406.06649)] [visual results] [pretrained models]
 
 
 
 #### 🔥🔥🔥 News
-
+- **2024-10-23:** Code is released. ⭐️⭐️⭐️
+- **2024-09-26:** 2DQuant is accepted at NeurIPS 2024. 🎉🎉🎉
 - **2024-06-09:** This repo is released.
 
 ---
