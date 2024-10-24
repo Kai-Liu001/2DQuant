@@ -269,8 +269,8 @@ class TDQuantModel:
                 norm_q = torch.norm(feature_q, dim=(1,2)).detach()
                 norm_f = torch.norm(feature_f, dim=(1,2)).detach()
                 
-                norm_q.unsqueeze_(1).unsqueeze_(2).unsqueeze_(3)
-                norm_f.unsqueeze_(1).unsqueeze_(2).unsqueeze_(3)
+                norm_q = norm_q.unsqueeze(1).unsqueeze(2).unsqueeze(3)
+                norm_f = norm_f.unsqueeze(1).unsqueeze(2).unsqueeze(3)
                 
                 feature_q = feature_q / norm_q
                 feature_f = feature_f / norm_f

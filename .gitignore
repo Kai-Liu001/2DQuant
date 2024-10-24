@@ -14,6 +14,7 @@ history/
 docs/api
 scripts/__init__.py
 keydata/*
+"experiments copy"/*
 
 *.DS_Store
 .idea

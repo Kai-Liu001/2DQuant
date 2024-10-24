@@ -8,7 +8,6 @@ from .sr_model import SRModel
 
 from torch.nn import Linear, Module
 from functools import partial
-import matplotlib.pyplot as plt
 import os
 import threading
 import time

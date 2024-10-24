@@ -5,7 +5,7 @@ num_gpu: 1
 manual_seed: 3407
 gpu: 0
 bit: 4
-cali_data: keydata/cali_data_100_x4.pth
+cali_data: keydata/cali_data_x4.pth
 quant:
   hook_per_layer: True
   hook_per_block: False
@@ -17,8 +17,8 @@ datasets:
     task: SR
     name: DF2K
     type: PairedImageDataset
-    dataroot_gt: dataset/SR/DF2K/HR
-    dataroot_lq: dataset/SR/DF2K/LR_bicubic/X4
+    dataroot_gt: datasets/DF2K/HR
+    dataroot_lq: datasets/DF2K/LR_bicubic/X4
     filename_tmpl: "{}x4"
     io_backend:
       type: disk
@@ -40,8 +40,8 @@ datasets:
     task: SR
     name: Set5
     type: PairedImageDataset
-    dataroot_gt: dataset/SR/benchmark/Set5/HR
-    dataroot_lq: dataset/SR/benchmark/Set5/LR_bicubic/X4
+    dataroot_gt: datasets/benchmark/Set5/HR
+    dataroot_lq: datasets/benchmark/Set5/LR_bicubic/X4
     filename_tmpl: "{}x4"
     io_backend:
       type: disk
