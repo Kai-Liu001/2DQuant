@@ -48,13 +48,17 @@ python setup.py develop
 
 ## Contents
 
-1. [Datasets](#datasets)
-1. [Models](#models)
-1. [Training](#training)
-1. [Testing](#testing)
-1. [Results](#results)
-1. [Citation](#citation)
-1. [Acknowledgements](#acknowledgements)
+- [2DQuant: Low-bit Post-Training Quantization for Image Super-Resolution](#2dquant-low-bit-post-training-quantization-for-image-super-resolution)
+      - [🔥🔥🔥 News](#-news)
+  - [Dependencies](#dependencies)
+  - [Contents](#contents)
+  - [ Datasets](#-datasets)
+  - [Models](#models)
+  - [ Training](#-training)
+  - [ Testing](#-testing)
+  - [ Results](#-results)
+  - [ Citation](#-citation)
+  - [ Acknowledgements](#-acknowledgements)
 
 ## <a name="datasets"></a> Datasets
 
@@ -145,7 +149,17 @@ We achieved state-of-the-art performance. Detailed results can be found in the p
 
 </details>
 
+## <a name="citation"></a> Citation
+If you find the code helpful in your research or work, please cite the following paper(s).
 
+```
+@inproceedings{liu20242dquant,
+    title={2DQuant: Low-bit Post-Training Quantization for Image Super-Resolution},
+    author={Liu, Kai and Qin, Haotong and Guo, Yong and Yuan, Xin and Kong*, Linghe and Chen, Guihai and Zhang, Yulun},
+    booktitle={NeurIPS},
+    year={2024}
+}
+```
 
 ## <a name="acknowledgements"></a> Acknowledgements
 
