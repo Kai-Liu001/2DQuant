@@ -2,7 +2,7 @@
 
 [Kai Liu](https://kai-liu001.github.io/), [Haotong Qin](https://htqin.github.io/), [Yong Guo](https://www.guoyongcs.com/), [Xin Yuan](https://en.westlake.edu.cn/faculty/xin-yuan.html), [Linghe Kong](https://www.cs.sjtu.edu.cn/~linghe.kong/), [Guihai Chen](https://cs.nju.edu.cn/gchen/index.htm), and [Yulun Zhang](http://yulunzhang.com/), "2DQuant: Low-bit Post-Training Quantization for Image Super-Resolution", NeurIPS, 2024
 
-[[arXiv](https://arxiv.org/abs/2406.06649)] [visual results] [pretrained models]
+[[arXiv](https://arxiv.org/abs/2406.06649)] [[visual results](#results)] [[pretrained models](#models)]
 
 
 
@@ -35,10 +35,12 @@
 - NVIDIA GPU + [CUDA](https://developer.nvidia.com/cuda-downloads)
 
 ```bash
-# Clone the github repo and go to the default directory 'DAT'.
+# Clone the github repo and go to the default directory '2DQuant'.
 git clone https://github.com/Kai-Liu001/2DQuant.git
+cd 2DQuant
 conda create -n tdquant python=3.8
 conda activate tdquant
+pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio===0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
 pip install -r requirements.txt
 python setup.py develop
 ```
@@ -58,21 +60,22 @@ python setup.py develop
 
 Used training and testing sets can be downloaded as follows:
 
-| Training Set                                                 |                         Testing Set                          |                        Visual Results                        |
-| :----------------------------------------------------------- | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) (800 training images, 100 validation images) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) (2650 images) [complete training dataset DF2K: [Google Drive](https://drive.google.com/file/d/1TubDkirxl4qAWelfOnpwaSKoj3KLAIG4/view?usp=share_link) / [Baidu Disk](https://pan.baidu.com/s/1KIcPNz3qDsGSM0uDKl4DRw?pwd=74yc)] | Set5 + Set14 + BSD100 + Urban100 + Manga109 [complete testing dataset: [Google Drive](https://drive.google.com/file/d/1yMbItvFKVaCT93yPWmlP3883XtJ-wSee/view?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1Tf8WT14vhlA49TO2lz3Y1Q?pwd=8xen)] | [Google Drive](https://drive.google.com/drive/folders/1ZMaZyCer44ZX6tdcDmjIrc_hSsKoMKg2?usp=drive_link) / [Baidu Disk](https://pan.baidu.com/s/1LO-INqy40F5T_coAJsl5qw?pwd=dqnv#list/path=%2F) |
+| Training Set                                                 |                         Testing Set                          |
+| :----------------------------------------------------------- | :----------------------------------------------------------: | 
+| [DIV2K](https://data.vision.ee.ethz.ch/cvl/DIV2K/) (800 training images, 100 validation images) +  [Flickr2K](https://cv.snu.ac.kr/research/EDSR/Flickr2K.tar) (2650 images) [complete training dataset DF2K: [Google Drive](https://drive.google.com/file/d/1TubDkirxl4qAWelfOnpwaSKoj3KLAIG4/view?usp=share_link) / [Baidu Disk](https://pan.baidu.com/s/1KIcPNz3qDsGSM0uDKl4DRw?pwd=74yc)] | Set5 + Set14 + BSD100 + Urban100 + Manga109 [complete testing dataset: [Google Drive](https://drive.google.com/file/d/1yMbItvFKVaCT93yPWmlP3883XtJ-wSee/view?usp=sharing) / [Baidu Disk](https://pan.baidu.com/s/1Tf8WT14vhlA49TO2lz3Y1Q?pwd=8xen)] |
 
 Download training and testing datasets and put them into the corresponding folders of `datasets/`.
 
 ## <a name="models"></a>Models
 
-The pretrained models will be released soon.
+The pretrained models can be downloaded from [Google drive](https://drive.google.com/file/d/12g_64n-hhJJbvd6cpU7VakxruGRpzhP-/view?usp=drive_link) and [Baidu drive](https://pan.baidu.com/s/1-2Ohc_46IyEZ6-W2CoyCuQ?pwd=2dqt).
 
 ## <a name="training"></a> Training
 Training is used to optimize the quantizers' parameters.
 
 - Download [training](https://drive.google.com/file/d/1TubDkirxl4qAWelfOnpwaSKoj3KLAIG4/view?usp=share_link) (DF2K, already processed) and [testing](https://drive.google.com/file/d/1yMbItvFKVaCT93yPWmlP3883XtJ-wSee/view?usp=sharing) (Set5, BSD100, Urban100, Manga109, already processed) datasets, place them in `datasets/`.
-- Download [cali data]() and place them in `keydata/` or run `scripts/2DQuant-getcalidata.sh` to obtain `calidata`.
+- Download cali data from [Google drive](https://drive.google.com/file/d/1UxgyQWrToZHxsMrPursuMBtyCcNjFwUA/view?usp=drive_link) or [Baidu drive](https://pan.baidu.com/s/11RmN0WjHTowZU0klnORW6g?pwd=2dqt).
+- Place them in `keydata/` or run `scripts/2DQuant-getcalidata.sh` to obtain `calidata`.
 
 - Run the following scripts. The training configuration is in `options/train/`. More scripts can be found in `scripts/2DQuant-train.sh`.
 
@@ -86,7 +89,7 @@ Training is used to optimize the quantizers' parameters.
 
 ## <a name="testing"></a> Testing
 
-- Download the pre-trained [models]() (pre-trained models will be released soon.) and place them in `experiments/pretrained_models/`.
+- Download the pre-trained [models](#models) and place them in `experiments/pretrained_models/`.
 
 - Download [testing](https://drive.google.com/file/d/1yMbItvFKVaCT93yPWmlP3883XtJ-wSee/view?usp=sharing) (Set5, BSD100, Urban100, Manga109) datasets, place them in `datasets/`.
 
@@ -101,7 +104,7 @@ Training is used to optimize the quantizers' parameters.
 
 ## <a name="results"></a> Results
 
-We achieved state-of-the-art performance. Detailed results can be found in the paper.
+We achieved state-of-the-art performance. Detailed results can be found in the paper. If you'd like to compare with us or see our results detailedly, all visual results can be downloaded from [Google drive](https://drive.google.com/file/d/1nj47OJ4CjqysztzhQzooXr64I5fvPIXB/view?usp=drive_link) and [Baidu drive](https://pan.baidu.com/s/11d5n3lMC2rEVIWbXpkvGaQ?pwd=2dqt).
 
 <details>
 <summary>Click to expand</summary>
